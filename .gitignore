@@ -1,0 +1,4 @@
+raw/
+data/open/*.png
+data/closed/*.png
+models/*.mat
