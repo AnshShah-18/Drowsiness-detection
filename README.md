@@ -1,6 +1,8 @@
 # Real-Time Driver Drowsiness Detection using MATLAB
 
-This project detects driver drowsiness from a live webcam feed by locating the face and eyes, classifying eye state with a CNN, and triggering an alert when the eyes remain closed for too many consecutive frames.
+This project detects driver drowsiness from a live webcam feed by locating the face and eyes, classifying eye state with a convolutional neural network (CNN), and triggering an alert when the eyes remain closed for too many consecutive frames.
+
+The model was trained and validated in MATLAB Online using a public eye-state dataset. The completed training run reached **95.75% validation accuracy**.
 
 ## Requirements
 
@@ -28,7 +30,23 @@ matlab-drowsiness-detection/
     open/
     closed/
   models/
+  results/
+    metrics.txt
 ```
+
+## Results
+
+The CNN was trained in MATLAB Online on a prepared subset of the MRL Eye Dataset:
+
+- Training data prepared: 1000 open-eye images and 1000 closed-eye images
+- Classes: `open` and `closed`
+- Training environment: MATLAB Online
+- Training hardware reported by MATLAB: single CPU
+- Validation accuracy: **95.75%**
+- Saved model path after training: `models/eyeStateCNN.mat`
+- Result summary file: `results/metrics.txt`
+
+The trained `.mat` model is generated locally after running `trainEyeStateCNN` and is intentionally ignored by Git because model files can become large.
 
 ## Quick Start with Public Dataset
 
@@ -41,7 +59,13 @@ The fastest public-dataset workflow uses the MRL Eye Dataset. The project includ
 addpath("src")
 ```
 
-3. Download and prepare a balanced MRL subset:
+3. Download and prepare a balanced MRL subset. For a quicker first run in MATLAB Online, this project was tested with 1000 images per class:
+
+```matlab
+downloadMRLEyeDataset(1000)
+```
+
+For a larger training set, use:
 
 ```matlab
 downloadMRLEyeDataset(6000)
@@ -60,6 +84,8 @@ runDrowsinessDetector
 ```
 
 The MRL archive is about 326 MB, so the first download can take a few minutes.
+
+MATLAB Online can train and validate the model, but live webcam access may depend on browser and MATLAB Online support. Desktop MATLAB is recommended for the real-time webcam demo.
 
 ## Quick Start with Your Webcam Dataset
 
