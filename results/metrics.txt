@@ -1,0 +1,10 @@
+Real-Time Driver Drowsiness Detection Results
+============================================
+
+Validation Accuracy: 95.75%
+Dataset: MRL Eye Dataset
+Classes: open, closed
+Training Images Used: 1000 open-eye images and 1000 closed-eye images
+Model: CNN trained on open/closed eye images
+Training Environment: MATLAB Online
+Model Output: models/eyeStateCNN.mat
